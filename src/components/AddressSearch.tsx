@@ -49,13 +49,7 @@ const AddressSearch: React.FC<Props> = ({
 
       axios
         .get(
-          `https://api.bestaatditadres.nl/lookup.json?postcode=${zipcode}&huisnummer=${houseNumber}`,
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-            },
-          }
+          `https://api.bestaatditadres.nl/lookup.json?postcode=${zipcode}&huisnummer=${houseNumber}`
         )
         .then((response) => {
           setResults(response.data);
