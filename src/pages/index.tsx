@@ -4,15 +4,35 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import AddressSearch from "@/components/AddressSearch";
 import AddressConfirmation from "@/components/AddressConfirmation";
-import { RegistrationSaving } from "@/components/RegistrationSaving";
-import { RegistrationNoSavings } from "@/components/RegistrationNoSavings";
-import { Sidebar } from "@/components/Sidebar";
+import RegistrationSaving from "@/components/RegistrationSaving";
+import RegistrationNoSavings from "@/components/RegistrationNoSavings";
+import Sidebar from "@/components/Sidebar";
 
 const Home: React.FC = () => {
   const [step, setStep] = useState<number>(0);
   const [zipCode, setZipCode] = useState<string>("");
   const [houseNumber, setHouseNumber] = useState<string>("");
-  const [address, setAddress] = useState<string[]>([]);
+  const [address, setAddress] = useState<AddressArray[]>([]);
+  const [wozValue, setWozValue] = useState<string>("");
+  const [ewozValue, setEwozValue] = useState<string>("");
+
+  type AddressArray = {
+    breedtegraad: number;
+    gebruiksdoelen: Array<String>;
+    huisletter: number;
+    huisnummer: number;
+    huisnummertoevoeging: number;
+    id: number;
+    lengtegraad: number;
+    nevenadres: boolean;
+    object_id: number;
+    object_type: string;
+    openbareruimte: string;
+    postcode: string;
+    woonplaats: string;
+    x: number;
+    y: number;
+  };
 
   return (
     <>
@@ -23,25 +43,34 @@ const Home: React.FC = () => {
       </Head>
       <Header />
       <main className=" h-screen text-base text-dark-blue p-4 mx-auto font-Roboto md:max-w-screen-md lg:max-w-screen-lg lg:pt-12 lg:flex gap-20">
-        <Sidebar />
+        <Sidebar step={step} />
         <div className="grow">
-          {/* {step == 0 ? ( */}
-          <AddressSearch
-            setStep={setStep}
-            zipcode={zipCode}
-            setZipCode={setZipCode}
-            houseNumber={houseNumber}
-            setHouseNumber={setHouseNumber}
-            address={address}
-            setAddress={setAddress}
-          />
-          {/* // ) : step == 1 ? ( */}
-          <AddressConfirmation setStep={setStep} />
-          {/* // ) : step == 2 ? ( */}
-          <RegistrationSaving />
-          {/* // ) : ( */}
-          <RegistrationNoSavings />
-          {/* // )} */}
+          {step === 0 ? (
+            <AddressSearch
+              setStep={setStep}
+              zipcode={zipCode}
+              setZipCode={setZipCode}
+              houseNumber={houseNumber}
+              setHouseNumber={setHouseNumber}
+              address={address}
+              setAddress={setAddress}
+            />
+          ) : step === 1 ? (
+            <AddressConfirmation
+              setStep={setStep}
+              address={address}
+              wozValue={wozValue}
+              setWozValue={setWozValue}
+              ewozValue={ewozValue}
+              setEwozValue={setEwozValue}
+            />
+          ) : step === 2 ? (
+            <RegistrationSaving setStep={setStep} wozValue={wozValue} ewozValue={ewozValue} />
+          ) : step === 3 ? (
+            <RegistrationNoSavings setStep={setStep} wozValue={wozValue} ewozValue={ewozValue} />
+          ) : (
+            <></>
+          )}
         </div>
       </main>
     </>

@@ -1,6 +1,12 @@
 import Image from "next/image";
 
-export const RegistrationNoSavings = () => {
+type Props = {
+  setStep: (val: number) => void;
+  wozValue: string;
+  ewozValue: string;
+};
+
+const RegistrationNoSavings: React.FC<Props> = ({ setStep, wozValue, ewozValue }) => {
   return (
     <div className="bg-white p-4 lg:p-8 border border-border rounded-md shadow-sm">
       <h1 className="text-2xl md:text-3xl font-Montserrat font-semibold mb-2">
@@ -10,6 +16,16 @@ export const RegistrationNoSavings = () => {
         <p className="font-bold">U kunt waarschijnlijk geen geld besparen.</p>
       </div>
       <h2 className="font-Montserrat font-semibold mt-5 text-lg">WOZ-waarde</h2>
+      <div className="bg-light-gray p-4 mb-4 mt-2 rounded-sm">
+        <div className="flex items-center justify-between mb-3">
+          <p>Huidige WOZ-waarde</p>
+          <p>&euro; {wozValue}</p>
+        </div>
+        <div className="flex items-center justify-between">
+          <p>Eerlijke WOZ-waarde</p>
+          <p>&euro; {ewozValue}</p>
+        </div>
+      </div>
       <p className="my-2">
         Op basis van onze WOZ-taxatie kunt u geen bezwaar maken om uw WOZ-waarde te verlagen.
       </p>
@@ -26,6 +42,7 @@ export const RegistrationNoSavings = () => {
         </button>
         <button
           type="submit"
+          onClick={() => setStep(1)}
           className="font-bold w-full border rounded-md border-border mt-2 py-3 shadow-sm text-sm md:text-lg md:px-5 md:w-fit "
         >
           Vorige
@@ -34,17 +51,26 @@ export const RegistrationNoSavings = () => {
       <h3 className="font-Montserrat font-semibold mt-5 text-lg">
         Uw bezwaar wordt behandeld door:
       </h3>
-      <div className="">
+      <div className="my-4 p-4 flex gap-4 bg-light-blue">
         <figure>
           <Image
             src="/adviseur.png"
-            width="150"
-            height="100"
-            alt="woz-logo"
-            className="rounded-full h-40 w-40"
+            width="75"
+            height="75"
+            alt="woz-adviseuro"
+            className="rounded-full aspect-square object-cover"
           />
         </figure>
+        <div>
+          <h4 className="font-bold ">George van Heeswijk</h4>
+          <p className="text-gray-blue text-sm">WOZ-adviseur / Regio Utrecht</p>
+          <a href="tel:0851234567" className="text-blue font-bold text-sm">
+            085 123 45 67
+          </a>
+        </div>
       </div>
     </div>
   );
 };
+
+export default RegistrationNoSavings;

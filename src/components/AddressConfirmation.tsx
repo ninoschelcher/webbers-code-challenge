@@ -5,10 +5,65 @@ import Modal from "./Modal";
 
 type Props = {
   setStep: (val: number) => void;
+  wozValue: string;
+  setWozValue: (val: string) => void;
+  ewozValue: string;
+  setEwozValue: (val: string) => void;
+  address: AddressArray[];
 };
 
-const AddressConfirmation: React.FC<Props> = ({ setStep }) => {
+type AddressArray = {
+  breedtegraad: number;
+  gebruiksdoelen: Array<String>;
+  huisletter: number;
+  huisnummer: number;
+  huisnummertoevoeging: number;
+  id: number;
+  lengtegraad: number;
+  nevenadres: boolean;
+  object_id: number;
+  object_type: string;
+  openbareruimte: string;
+  postcode: string;
+  woonplaats: string;
+  x: number;
+  y: number;
+};
+
+const AddressConfirmation: React.FC<Props> = ({
+  setStep,
+  wozValue,
+  setWozValue,
+  ewozValue,
+  setEwozValue,
+  address,
+}) => {
   const [showModal, setShowModal] = useState(false);
+
+  const checkPropertyValue = () => {
+    address.map((data) => {
+      if (!data.gebruiksdoelen.includes("woonfunctie")) {
+        setShowModal(true);
+      } else {
+        setWozValue(
+          Math.floor(Math.random() * (450 - 400) + 400)
+            .toFixed(3)
+            .toString()
+        );
+        setEwozValue(
+          Math.floor(Math.random() * (450 - 400) + 400)
+            .toFixed(3)
+            .toString()
+        );
+
+        if (wozValue > ewozValue) {
+          setStep(2);
+        } else {
+          setStep(3);
+        }
+      }
+    });
+  };
 
   return (
     <div className="bg-white p-4 lg:p-8 border border-border rounded-md shadow-sm">
@@ -43,12 +98,25 @@ const AddressConfirmation: React.FC<Props> = ({ setStep }) => {
       </div>
       <h2 className="font-Montserrat font-semibold mt-5 text-lg">Uw adres</h2>
       <div className="bg-light-gray p-4 my-4 rounded-sm">
-        <p>{"Gegevens uit API"}</p>
+        {address.map((data) => (
+          <div key={data.id}>
+            <p>
+              {data.openbareruimte} {data.huisnummer}
+              {data.huisletter}
+              {data.huisnummertoevoeging},
+            </p>
+            <p>
+              {data.postcode}, {data.woonplaats}
+            </p>
+          </div>
+        ))}
       </div>
       <div className="flex flex-col md:flex-row-reverse md:justify-between">
         <button
           type="submit"
-          onClick={() => setShowModal(true)}
+          onClick={() => {
+            checkPropertyValue();
+          }}
           className="bg-blue text-white font-bold w-full rounded-md  border-border mt-2 py-3 shadow-sm text-lg md:w-fit md:px-5"
         >
           Volgende
