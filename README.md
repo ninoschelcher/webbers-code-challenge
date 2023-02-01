@@ -14,6 +14,17 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Waar ben ik trots op/wat ging goed?
+- Opzetten van project ging goed ondanks dat ik nooit echt goed met Nextjs heb gewerkt.
+- Alles Mobile First opzetten ging mij heel goed af. Eerst begonnen met het visuele voordat ik het functionele in ging.
+- Werken met een iets moeilijkere API dan ik gewend (realtime data querien) ben ging mij goed af.
+
+## Wat had ik beter kunnen doen?
+- Meer gebruik kunnen maken van de functionaliteiten en voordelen van NextJS in combinatie met typescript. Het was allemaal nieuw voor mij waardoor het aardig moeilijk was (getstaticprops etc).
+- Multiform layout had in principe anders opgezet kunnen worden zodat de sidebar met de status makkelijker te implementeren was.
+- Ik had iets meer tijd kunnen steken in mijn componenten nog meer opsplitsen in andere componenten.
+
+
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
