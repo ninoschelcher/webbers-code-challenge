@@ -42,7 +42,7 @@ const Home: React.FC = () => {
         <title>Eerlijke WOZ - WOZ Check</title>
       </Head>
       <Header />
-      <main className=" h-screen text-base text-dark-blue p-4 mx-auto font-Roboto md:max-w-screen-md lg:max-w-screen-lg lg:pt-12 lg:flex gap-20">
+      <main className="h-screen text-base text-dark-blue p-4 mx-auto font-Roboto md:max-w-screen-md lg:max-w-screen-lg lg:pt-12 lg:flex gap-20">
         <Sidebar step={step} />
         <div className="grow">
           {step === 0 ? (

@@ -6,7 +6,7 @@ type Props = {
 
 const RegistrationSaving: React.FC<Props> = ({ setStep, wozValue, ewozValue }) => {
   return (
-    <div className="bg-white p-4 lg:p-8 border border-border rounded-md shadow-sm">
+    <div className="bg-white p-4 lg:p-8 border border-border rounded-md shadow-sm mb-6">
       <h1 className="text-2xl md:text-3xl font-Montserrat font-semibold mb-2">
         U betaalt te veel belasting door een te hoge WOZ-waarde
       </h1>

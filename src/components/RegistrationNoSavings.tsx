@@ -8,7 +8,7 @@ type Props = {
 
 const RegistrationNoSavings: React.FC<Props> = ({ setStep, wozValue, ewozValue }) => {
   return (
-    <div className="bg-white p-4 lg:p-8 border border-border rounded-md shadow-sm">
+    <div className="bg-white p-4 lg:p-8 border border-border rounded-md shadow-sm mb-6">
       <h1 className="text-2xl md:text-3xl font-Montserrat font-semibold mb-2">
         U WOZ-waarde is waarschijnlijk niet te hoog
       </h1>
