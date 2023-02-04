@@ -1,9 +1,28 @@
 type Props = {
   showModal: boolean;
   setShowModal: (val: boolean) => void;
+  address: AddressArray[];
 };
 
-const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
+type AddressArray = {
+  breedtegraad: number;
+  gebruiksdoelen: Array<String>;
+  huisletter: number;
+  huisnummer: number;
+  huisnummertoevoeging: number;
+  id: number;
+  lengtegraad: number;
+  nevenadres: boolean;
+  object_id: number;
+  object_type: string;
+  openbareruimte: string;
+  postcode: string;
+  woonplaats: string;
+  x: number;
+  y: number;
+};
+
+const Modal: React.FC<Props> = ({ showModal, setShowModal, address }) => {
   return (
     <>
       {showModal ? (
@@ -34,7 +53,18 @@ const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
                   </p>
                 </div>
                 <div className="bg-light-gray rounded-sm mx-6 p-6 font-Roboto">
-                  <p>{"Gegevens uit API"}</p>
+                  {address.map((data) => (
+                    <div key={data.id}>
+                      <p>
+                        {data.openbareruimte} {data.huisnummer}
+                        {data.huisletter}
+                        {data.huisnummertoevoeging},
+                      </p>
+                      <p>
+                        {data.postcode}, {data.woonplaats}
+                      </p>
+                    </div>
+                  ))}
                 </div>
                 <div className="flex items-center flex-col p-6 md:flex-row md:gap-4">
                   <button

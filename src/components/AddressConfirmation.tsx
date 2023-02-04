@@ -67,7 +67,7 @@ const AddressConfirmation: React.FC<Props> = ({
 
   return (
     <div className="bg-white p-4 lg:p-8 border border-border rounded-md shadow-sm mb-6">
-      <Modal setShowModal={setShowModal} showModal={showModal} />
+      <Modal setShowModal={setShowModal} showModal={showModal} address={address} />
       <h1 className="text-2xl md:text-3xl font-Montserrat font-semibold mb-2">
         Welkom bij de WOZ Check 2023!
       </h1>

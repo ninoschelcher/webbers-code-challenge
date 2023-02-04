@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import houseData from "../../json/data.json";
 
 type Props = {
   setStep: (val: number) => void;
@@ -48,14 +49,22 @@ const AddressSearch: React.FC<Props> = ({
       setZipCode(query.slice(0, 6).toUpperCase());
       setHouseNumber(query.slice(7, 10));
 
-      axios
-        .get(
-          `https://api.bestaatditadres.nl/lookup.json?postcode=${zipcode}&huisnummer=${houseNumber}`
-        )
-        .then((response) => {
-          setResults(response.data);
-        })
-        .catch((err) => console.log(err));
+      // axios
+      //   .get(
+      //     `http://api.bestaatditadres.nl/lookup.json?postcode=${zipcode}&huisnummer=${houseNumber}`
+      //   )
+      //   .then((response) => {
+      //     setResults(response.data);
+      //   })
+      //   .catch((err) => console.log(err));
+
+      const filteredHouses = houseData.filter((data) => {
+        return data.postcode === zipcode && data.huisnummer === Number(houseNumber);
+      });
+
+      setResults(filteredHouses);
+    } else {
+      setResults([]);
     }
   }, [query, houseNumber, setZipCode, setHouseNumber, zipcode, setAddress, address]);
 
